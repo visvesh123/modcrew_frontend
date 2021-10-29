@@ -58,10 +58,17 @@
   margin-left: 7%;
 }
 
-.social-icons {
-  margin-left: 7.5%;
-  padding-left: 10%;
+/* .social-icons
+{
+    margin-left: 7.5%;
+    padding-left: 10%;
 }
+@media  (max-device-width : 480){
+    .social-icons{
+        padding-left: 0% !important ;
+        margin-left: 0% !important;
+    }
+} */
 
 .login-btn {
   background-color: Transparent;
@@ -143,5 +150,21 @@
   letter-spacing: 1px;
   text-transform: uppercase;
   margin-left: -5px;
-  width: 10%;
+  width: 20%;
+}
+
+@media only screen and (max-width: 600px) {
+  .navbar-search {
+    display: inline;
+    margin-top: 1%;
+    margin-left: 1%;
+    padding-left: 4%;
+    height: 8vh;
+  }
+
+  .navbar-search form {
+    display: inline-flex;
+    width: 50%;
+    margin-left: -10px;
+  }
 }
