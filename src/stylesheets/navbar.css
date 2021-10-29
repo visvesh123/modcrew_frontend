@@ -164,7 +164,7 @@
 
   .navbar-search form {
     display: inline-flex;
-    width: 50%;
+    width: 80%;
     margin-left: -10px;
   }
 }
