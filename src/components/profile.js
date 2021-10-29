@@ -29,6 +29,7 @@ import pintrest from "../icons/pintrest.svg";
 import gold from "../icons/gold.svg"
 
 import { Row, Col } from "antd";
+import MediaCard from "./OrderCard/OrderCard";
 function Profile(){
 
     const [cookies, setCookie, removeCookie,get] = useCookies(['token']);
@@ -226,8 +227,26 @@ function Profile(){
 
     function renderOrders(){
         return (
-            <div>
-                
+            
+           
+
+            <div className = "col-md-9 col-xs-12 ">
+                 <h1> My Orders</h1>
+                 <hr/>
+                 <Row>
+                 { userInfo.orders.map(item => {
+
+                     return(
+                         <Col sm = {18} lg = {10}>
+                             <div style ={{marginBottom : 10}}>
+                        <MediaCard key = {item.id} item = {item}/>
+                        </div>
+                        </Col>
+                     )
+                 })}
+                 </Row>
+              
+              
             </div>
         );
     }
