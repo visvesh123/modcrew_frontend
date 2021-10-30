@@ -16,8 +16,33 @@ import logout from "../icons/logout2.svg";
 
 import arrowUp from "../icons/arrowUp.svg";
 import axios from "axios";
-import ProductList from './Admin/ProductList'
+import ProductList from "./Admin/ProductList";
+import { Input } from "antd";
 
+const availableCatagories = [
+  "collectibles",
+  "diary",
+  "sticker",
+  "badge",
+  "key-chain",
+  "poster",
+  "fashion",
+  "active-wear",
+  "jogger",
+  "jersey",
+  "top-wear",
+  "henley",
+  "round-neck",
+  "crop-top",
+  "bottom-wear",
+  "shorts",
+  "accessories",
+  "cap",
+  "bandana",
+  "bag",
+];
+
+const { Search } = Input;
 function AdminPanel() {
   const [cookies, setCookie, removeCookie, get] = useCookies(["token"]);
   const loggedInToken = cookies.token;
@@ -26,7 +51,7 @@ function AdminPanel() {
   const [allUsers, setAllUsers] = useState(null);
   const [allOrders, setAllOrders] = useState(null);
   const [gettingOrders, setGettingOrders] = useState(null);
-  const [ products , setProducts] = useState(null)
+  const [products, setProducts] = useState(null);
 
   function Logout() {
     removeCookie("token");
@@ -55,7 +80,6 @@ function AdminPanel() {
   }, []);
 
   useEffect(() => {
-
     axios
       .get(
         "https://modcrew-dev.herokuapp.com/api/v1/orders",
@@ -75,13 +99,14 @@ function AdminPanel() {
       });
   }, []);
 
-  useEffect(()=>{
-    axios.get("https://modcrew-dev.herokuapp.com/api/v1/products")
-        .then((response)=>{
-          console.log(response.data.data)
-           setProducts(response.data.data)
-        });
-},[]);
+  useEffect(() => {
+    axios
+      .get("https://modcrew-dev.herokuapp.com/api/v1/products")
+      .then((response) => {
+        console.log(response.data.data);
+        setProducts(response.data.data);
+      });
+  }, []);
 
   function renderUsers() {
     return allUsers?.map((user, idx) => {
@@ -257,10 +282,41 @@ function AdminPanel() {
   }
 
   function renderProduct() {
-    return <div>
-      <h2>Product List</h2>
-       <ProductList item = {products}/>
-    </div>;
+    return (
+      <div>
+        <h2>Product List</h2>
+        <div style={{display : 'flex', flexDirection : 'row' , justifyContent: 'space-between'}}>
+        <Search
+          placeholder="input search text"
+          onSearch={(val) => console.log(val)}
+          style={{ width: 200 }}
+        />
+        <div class="dropdown">
+          <button
+            class="btn btn-secondary dropdown-toggle navbar-dropdown"
+            type="button"
+            id="dropdownMenuButton1"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+             Categories
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            {availableCatagories.map((category) => {
+              return (
+                <li>
+                  <a class="dropdown-item" href="#">
+                    {category.charAt(0).toUpperCase() + category.slice(1)}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+        </div>
+        <ProductList item={products} />
+      </div>
+    );
   }
 
   function renderInventory() {
@@ -424,7 +480,7 @@ function AdminPanel() {
           </div>
           <div className="col-md-6  ">
             <textarea
-              className = "hi"
+              className="hi"
               type="text"
               rows="4"
               cols="50"
