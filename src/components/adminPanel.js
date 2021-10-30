@@ -16,6 +16,7 @@ import logout from "../icons/logout2.svg";
 
 import arrowUp from "../icons/arrowUp.svg";
 import axios from "axios";
+import ProductList from './Admin/ProductList'
 
 function AdminPanel() {
   const [cookies, setCookie, removeCookie, get] = useCookies(["token"]);
@@ -72,6 +73,13 @@ function AdminPanel() {
         setGettingOrders([]);
       });
   }, []);
+
+  useEffect(()=>{
+    axios.get("https://modcrew-dev.herokuapp.com/api/v1/products")
+        .then((response)=>{
+          console.log(response.data.data)
+        });
+},[]);
 
   function renderUsers() {
     return allUsers?.map((user, idx) => {
@@ -247,7 +255,10 @@ function AdminPanel() {
   }
 
   function renderProduct() {
-    return <div>4</div>;
+    return <div>
+      <h2>Product List</h2>
+       <ProductList/>
+    </div>;
   }
 
   function renderInventory() {

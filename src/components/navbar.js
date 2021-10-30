@@ -104,10 +104,7 @@ function Navbar(props){
                             </div>
                           
                             <div className="navbar-search">
-                            <form>
-                                    <input type="search" placeholder="Search entire store here" aria-label="Search" />
-                                    <button className="search-btn" type="submit">Search<BsSearch size={15} className="white-color"/></button>
-                                </form>
+                           
                                 <div class="dropdown">
                                     <button class="btn btn-secondary dropdown-toggle navbar-dropdown" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                         All Categories
@@ -118,6 +115,11 @@ function Navbar(props){
                                     })}
                                     </ul>
                                 </div>
+
+                                <form>
+                                    <input type="search" placeholder="Search entire store here" aria-label="Search" />
+                                    <button className="search-btn" type="submit">Search<BsSearch size={15} className="white-color"/></button>
+                                </form>
                               
                                    
                                 <div className="button-tray">
