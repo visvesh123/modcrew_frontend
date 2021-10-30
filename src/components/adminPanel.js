@@ -26,6 +26,7 @@ function AdminPanel() {
   const [allUsers, setAllUsers] = useState(null);
   const [allOrders, setAllOrders] = useState(null);
   const [gettingOrders, setGettingOrders] = useState(null);
+  const [ products , setProducts] = useState(null)
 
   function Logout() {
     removeCookie("token");
@@ -78,6 +79,7 @@ function AdminPanel() {
     axios.get("https://modcrew-dev.herokuapp.com/api/v1/products")
         .then((response)=>{
           console.log(response.data.data)
+           setProducts(response.data.data)
         });
 },[]);
 
@@ -257,7 +259,7 @@ function AdminPanel() {
   function renderProduct() {
     return <div>
       <h2>Product List</h2>
-       <ProductList/>
+       <ProductList item = {products}/>
     </div>;
   }
 

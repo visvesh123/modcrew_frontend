@@ -23,33 +23,23 @@ const columns = [
     key: "status",
     dataIndex: "status",
     render: (tags) => {
-        let color;
-        (tags < 20)?color = 'red':color = 'green'
-      return <Tag color={"red"} key={tags}> Best Selling</Tag>;
+        let color , desc;
+        (tags < 40)?color = 'red':color = 'green';
+        (tags < 40)?desc = 'Low Stock':desc = 'Available';
+      return <Tag color={color} key={tags}> {desc}</Tag>;
     },
   },
   {
     title: "Action",
     key: "action",
-    render: (text, record) => (
-      <Space size="middle">
-       
-      <a href = "/">Invite </a>
-      </Space>
-    ),
+    render: (text, record) => {
+        let desc;
+        (record.status < 40)?desc = 'Re Order':desc = 'Edit Stock';
+        return <Space> <a href="/"> {desc}</a></Space>
+    }
   },
 ];
 
-const data = [];
-for (let i = 0; i < 46; i++) {
-  data.push({
-    key: i,
-    name: `Edward King ${i}`,
-    category: 32,
-    quantity: `London, Park Lane no. ${i}`,
-    value: "Val",
-  });
-}
 
 class ProductList extends React.Component {
   state = {
@@ -73,6 +63,8 @@ class ProductList extends React.Component {
     this.setState({ selectedRowKeys });
   };
 
+  
+
   render() {
     const { loading, selectedRowKeys } = this.state;
     const rowSelection = {
@@ -80,6 +72,22 @@ class ProductList extends React.Component {
       onChange: this.onSelectChange,
     };
     const hasSelected = selectedRowKeys.length > 0;
+
+  const arr =  this.props.item
+    const data = [];
+for (let i = 0; i < this.props.item.length; i++) {
+    let r = Math.floor(Math.random() * 150)
+  data.push({
+    key: i,
+    name: arr[i].title,
+    category: arr[i].category[1],
+    quantity: r,
+    value: 20 * arr[i].sellingPrice + "/-",
+    status : r
+  });
+}
+
+
     return (
       <div>
         <div style={{ marginBottom: 16 }}>
