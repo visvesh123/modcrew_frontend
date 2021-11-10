@@ -5,7 +5,7 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
-import 'antd/dist/antd.css'; 
+import "antd/dist/antd.css";
 
 import home from "./components/home.js";
 import productPage from "./components/productPage.js";
@@ -24,10 +24,9 @@ import VerticalCarousel from "./components/verticalCarousel.js";
 
 function App() {
   return (
-    <div>
-      <Router> 
+    <div style={{ backgroundColor: "#F2F2F2" }}>
+      <Router>
         <Switch>
-        
           <Route exact path="/" component={home} />
           <Route path="/productPage/:productId" component={productPage} />
           <Route path="/about" component={about} />
