@@ -1,4 +1,4 @@
-import react from "react";
+import React from "react";
 import styles from "../stylesheets/product.css";
 import cover from "../stylesheets/images/cover.jpg";
 import cart from "../icons/cart.svg";
