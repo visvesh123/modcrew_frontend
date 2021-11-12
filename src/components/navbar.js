@@ -17,6 +17,7 @@ import logow from "../stylesheets/images/logow.svg";
 import { Row, Col } from "antd";
 
 const availableCatagories = [
+<<<<<<< HEAD
   "collectibles",
   "diary",
   "sticker",
@@ -41,6 +42,32 @@ const availableCatagories = [
 
 function getLoginPage() {
   window.location.href = "/login";
+=======
+    'collectibles',
+    'diary',
+    'sticker',
+    'badge',
+    'key-chain',
+    'poster',
+    'fashion',
+    'active-wear',
+    'jogger',
+    'jersey',
+    'top-wear',
+    'henley',
+    'round-neck',
+    'crop-top',
+    'bottom-wear',
+    'shorts',
+    'accessories',
+    'cap',
+    'bandana',
+    'bag'
+]
+ 
+function getLoginPage(){
+    window.location.href="/login";
+>>>>>>> db70dc9c121c34b054bfa6ceb55bb19cc63e052b
 }
 
 function goToCart() {
@@ -145,6 +172,7 @@ function Navbar(props) {
                     >
                       Login/Signup
                     </button>
+<<<<<<< HEAD
                   )}
                   {loggedInToken && (
                     <button
@@ -196,6 +224,54 @@ function Navbar(props) {
                     <BsSearch size={15} className="white-color" />
                   </button>
                 </form>
+=======
+                    <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
+                        <a className="navbar-brand logo" href="./"><img src={logow} /></a>
+                        <div className="main-div">
+                            <div className="row upper-navbar">
+                               
+                                <ul className="navbar-nav col-md-8 me-auto ">
+                                    <li className="nav-item upper-nav-list">
+                                        <a className="nav-link active" aria-current="page" href="/">Home</a>
+                                    </li>
+                                    <li className="nav-item upper-nav-list">
+                                        <a className="nav-link" href="#">Winners List</a>
+                                     </li>
+                                    <li className="nav-item upper-nav-list">
+                                        <a className="nav-link" href="/contact">Contact Us</a>
+                                    </li>
+                                    <li className="nav-item upper-nav-list">
+                                         <a className="nav-link" href="/about">About</a>
+                                    </li>
+                                    <li className="nav-item upper-nav-list">
+                                        <a className="nav-link" href="#">Help</a>
+                                    </li>
+                                </ul>
+                               
+                                <div className="col-md social-icons">
+                                    <button><FaFacebookF size={20}className="white-color"/></button>
+                                    <button><IoLogoWhatsapp size={20} className="white-color"/></button>
+                                    <button><RiTwitterFill size={20} className="white-color"/></button>
+                                    <button><RiInstagramFill size={20} className="white-color"/></button>
+                                    <button><IoIosCall size={20} className="white-color"/></button>
+                                    {loggedInToken ?  <button className="login-btn" onClick={()=>{Logout()}}>Logout</button> : <button className="login-btn" onClick={()=>{getLoginPage()}}>Login/Signup</button>}
+                                    {loggedInToken && <button className="login-btn" onClick={()=>getProfilePage()}>Profile</button>}
+                                </div>
+                            </div>
+                          
+                            <div className="navbar-search">
+                           
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle navbar-dropdown" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                        All Categories
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    {availableCatagories.map((category)=>{
+                                        return (<li><a class="dropdown-item" href="#">{category.charAt(0).toUpperCase() + category.slice(1)}</a></li>);
+                                    })}
+                                    </ul>
+                                </div>
+>>>>>>> db70dc9c121c34b054bfa6ceb55bb19cc63e052b
 
                 <div className="button-tray">
                   <button className="navbar-buttons">

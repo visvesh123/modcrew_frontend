@@ -2,7 +2,8 @@ import react, { useState, useEffect } from "react";
 import styles from "../stylesheets/productInfo.css";
 
 import axios from "axios";
-
+import { Rate, Input, Button, Radio } from "antd";
+import "antd/dist/antd.css";
 import { TiAttachmentOutline } from "react-icons/ti";
 import { FaFacebookF } from "react-icons/fa";
 import { RiTwitterFill } from "react-icons/ri";
@@ -12,20 +13,14 @@ import { useCookies } from "react-cookie";
 
 function ProductInfo(props) {
   const [cookies, setCookie, removeCookie, get] = useCookies(["token"]);
-  const {
-    title,
-    sellingPrice,
-    description,
-    images,
-    reviews,
-    id,
-    variations, 
-  } = props;
+  const { title, sellingPrice, description, images, reviews, id, variations } =
+    props;
   const [quantity, setQuantity] = useState(1);
   const [currentCartQty, setCurrentCartQty] = useState(null);
   const [rating, setRating] = useState(null);
   const [reviewTitle, setReviewTitle] = useState(null);
   const [reviewBody, setReviewBody] = useState(null);
+  const [value4, setValue4] = useState(null);
 
   // let defaultItems = [];
   // if(localStorage.getItem("items")){
@@ -110,7 +105,7 @@ function ProductInfo(props) {
         },
         {
           withCredentials: true,
-        }
+        },
       );
 
       let items = response.data.data.items;
@@ -120,7 +115,7 @@ function ProductInfo(props) {
           .post(
             "https://modcrew-dev.herokuapp.com/api/v1/cart",
             {
-              "items": [
+              items: [
                 {
                   productId: id,
                   sku: variations[0].sku,
@@ -136,25 +131,25 @@ function ProductInfo(props) {
             },
             {
               withCredentials: true,
-            }
+            },
           )
           .then((response) => {
             console.log("product added to cart");
           });
       } else {
-          console.log("inside else block before filter",items);
+        console.log("inside else block before filter", items);
         items = items?.filter((item) => {
           if (item.productId !== id) {
             return item;
           }
         });
-        console.log("inside else block before push",items);
+        console.log("inside else block before push", items);
         items?.push({
           productId: id,
           sku: variations[0].sku,
           units: quantity,
         });
-        console.log("inside else block after push",items);
+        console.log("inside else block after push", items);
         axios
           .post(
             "https://modcrew-dev.herokuapp.com/api/v1/cart",
@@ -169,7 +164,7 @@ function ProductInfo(props) {
             },
             {
               withCredentials: true,
-            }
+            },
           )
           .then((response) => {
             console.log("product added to cart");
@@ -183,84 +178,101 @@ function ProductInfo(props) {
     element.innerHTML = "Added to cart";
   }
 
-  
-// async function handleAddToCartBtn() {
-// 	if (!loggedInToken) {
-// 		window.location.href = '../login'
-// 	}
+  // async function handleAddToCartBtn() {
+  // 	if (!loggedInToken) {
+  // 		window.location.href = '../login'
+  // 	}
 
-// 	const response = await axios.get(
-// 		'https://modcrew-dev.herokuapp.com/api/v1/cart',
-// 		{
-// 			headers: {
-// 				'Content-Type': 'application/json',
-// 				Authorization: `Bearer ${loggedInToken}`
-// 			}
-// 		}
-// 	)
+  // 	const response = await axios.get(
+  // 		'https://modcrew-dev.herokuapp.com/api/v1/cart',
+  // 		{
+  // 			headers: {
+  // 				'Content-Type': 'application/json',
+  // 				Authorization: `Bearer ${loggedInToken}`
+  // 			}
+  // 		}
+  // 	)
 
-// 	let items = response.data.data.items
+  // 	let items = response.data.data.items
 
-// 	if (items.length === 0) {
-// 		const res = await axios.post(
-// 			'https://modcrew-dev.herokuapp.com/api/v1/cart',
-// 			{
-// 				items: [
-// 					{
-// 						productId: id,
-// 						sku: variations[0].sku,
-// 						units: quantity
-// 					}
-// 				]
-// 			},
-// 			{
-// 				headers: {
-// 					'Content-Type': 'application/json',
-// 					Authorization: `Bearer ${loggedInToken}`
-// 				}
-// 			}
-// 		)
+  // 	if (items.length === 0) {
+  // 		const res = await axios.post(
+  // 			'https://modcrew-dev.herokuapp.com/api/v1/cart',
+  // 			{
+  // 				items: [
+  // 					{
+  // 						productId: id,
+  // 						sku: variations[0].sku,
+  // 						units: quantity
+  // 					}
+  // 				]
+  // 			},
+  // 			{
+  // 				headers: {
+  // 					'Content-Type': 'application/json',
+  // 					Authorization: `Bearer ${loggedInToken}`
+  // 				}
+  // 			}
+  // 		)
 
-// 		items = res.data.data.items
-// 	} else {
-// 		// items = items.filter((item) => {
-// 		// 	if (item.productId !== id) {
-// 		// 		// console.log("same item",item);
-// 		// 		return item
-// 		// 	}
-// 		// })
+  // 		items = res.data.data.items
+  // 	} else {
+  // 		// items = items.filter((item) => {
+  // 		// 	if (item.productId !== id) {
+  // 		// 		// console.log("same item",item);
+  // 		// 		return item
+  // 		// 	}
+  // 		// })
 
-// 		items = items.filter((item) => item.productId !== id)
+  // 		items = items.filter((item) => item.productId !== id)
 
-// 		const idx = items.findIndex((item) => item.productId === id)
+  // 		const idx = items.findIndex((item) => item.productId === id)
 
-// 		items[idx].sku = variations[0].sku;
-// 		items[idx].sku = quantity;
+  // 		items[idx].sku = variations[0].sku;
+  // 		items[idx].sku = quantity;
 
-// 		// // console.log("before pushing",items);
-// 		// items.push({
-// 		// 	productId: id,
-// 		// 	sku: variations[0].sku,
-// 		// 	units: quantity
-// 		// })
+  // 		// // console.log("before pushing",items);
+  // 		// items.push({
+  // 		// 	productId: id,
+  // 		// 	sku: variations[0].sku,
+  // 		// 	units: quantity
+  // 		// })
 
-// 		// console.log("after pushing",items);
-// 		const data = await axios.post(
-// 			'https://modcrew-dev.herokuapp.com/api/v1/cart',
-// 			{
-// 				items
-// 			},
-// 			{
-// 				headers: {
-// 					'Content-Type': 'application/json',
-// 					Authorization: `Bearer ${loggedInToken}`
-// 				}
-// 			}
-// 		)
+  // 		// console.log("after pushing",items);
+  // 		const data = await axios.post(
+  // 			'https://modcrew-dev.herokuapp.com/api/v1/cart',
+  // 			{
+  // 				items
+  // 			},
+  // 			{
+  // 				headers: {
+  // 					'Content-Type': 'application/json',
+  // 					Authorization: `Bearer ${loggedInToken}`
+  // 				}
+  // 			}
+  // 		)
 
-// 		items = data.data.data.items
-// 	}
-// }
+  // 		items = data.data.data.items
+  // 	}
+  // }
+
+  // const options = [
+  //   {
+  //     label: "Size 01",
+  //     value: "Size 01",
+  //     label: "Size 02",
+  //     value: "Size 02s",
+  //     label: "Size 03",
+  //     value: "Size 03",
+  //   },
+  // ];
+
+  // var onChange4 = (e) => {
+  //   console.log("radio4 checked", e.target.value);
+  //   // this.setState({
+  //   setValue4(e.target.value);
+  //   // });
+  // };
 
   return (
     <div className="product-info">
@@ -268,6 +280,16 @@ function ProductInfo(props) {
       <span className="selling-price">₹{sellingPrice}/-</span>
       <div className="prodctInfoPage-btns">
         <span className="productsize-btns">
+          {/* <Radio.Group
+            className="productsize-btn"
+            options={options}
+            onChange={onChange4}
+            // value={value4}
+            optionType="button"
+            buttonStyle="solid"
+          >
+            Size 01
+          </Radio.Group> */}
           <button className="productsize-btn default-size">Size 01</button>
           <button className="productsize-btn">Size 02</button>
           <button className="productsize-btn">Size 03</button>
@@ -350,35 +372,60 @@ function ProductInfo(props) {
       <hr />
       <div className="d-none" id="post-review">
         <form>
-          <input
-            onChange={(e) => {
-              setRating(e.target.value);
-            }}
+          Rating:
+          <Rate
+            // onChange={(e) => {
+            //   setRating(e.target.value);
+            // }}
             type="number"
-            placeholder="Rating"
-          ></input>
-          <input
+          />
+          <Input
             onChange={(e) => {
               setReviewTitle(e.target.value);
             }}
             type="text"
             placeholder="Title"
-          ></input>
-          <input
+            style={{ width: "200px" }}
+          />
+          <Input
             onChange={(e) => {
               setReviewBody(e.target.value);
             }}
             type="text"
             placeholder="Write your review here"
-          ></input>
-          <button
+            style={{ width: "300px" }}
+          />
+          <Button
+            onClick={(e) => {
+              handleReviewSubmit(e);
+            }}
+            type="submit"
+            style={{ backgroundColor: "lightgreen", color: "black" }}
+          >
+            Submit
+          </Button>
+          {/* <input
+            onChange={(e) => {
+              setReviewTitle(e.target.value);
+            }}
+            type="text"
+            placeholder="Title"
+          ></input> */}
+          {/* <input
+            onChange={(e) => {
+              setReviewBody(e.target.value);
+            }}
+            type="text"
+            placeholder="Write your review here"
+          ></input> */}
+          {/* <button
             onClick={(e) => {
               handleReviewSubmit(e);
             }}
             type="submit"
           >
             Submit Review
-          </button>
+          </button> */}
         </form>
       </div>
     </div>
