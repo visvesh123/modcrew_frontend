@@ -64,6 +64,7 @@ function ProductPage(props){
                 <div className="col-xs-12 col-md-6 productPage-img-div">
                     <img className="product-image" src={productData?.images[0]}/>
                 </div>
+             
                 <div className="col-xs-12 col-md-6 description-div">
                     <ProductInfo 
                         id={productData?._id}
@@ -86,5 +87,5 @@ function ProductPage(props){
         </div>
     );
 }
-
+ 
 export default ProductPage;

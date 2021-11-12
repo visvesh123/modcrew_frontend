@@ -3,13 +3,13 @@
   margin-top: 1%;
   margin-left: 1%;
   padding-left: 4%;
-  height: 8vh;
+  height: 6vh;
 }
 
 .navbar-search form {
   display: inline-flex;
   width: 50%;
-  margin-left: 0.3%;
+  margin-left: -3px;
 }
 
 .navbar-search input {
@@ -27,6 +27,7 @@
   background-size: 160px 400px; */
   /* width: 10px;
   height: 10px; */
+  margin-top: 30px;
   width: 200px;
   /* height: 500px; */
   display: block;
@@ -83,7 +84,7 @@
 }
 
 .upper-navbar {
-  margin-left: 4%;
+  margin-left: 15%;
 }
 
 .upper-nav-list {
@@ -126,8 +127,8 @@
 .vertical {
   border-left: 3px solid black;
   height: 25px;
-  /* position:absolute;
-    left: 50%; */
+  /* position: absolute;
+  left: 50%; */
 }
 
 .third-navbar-spans {

@@ -38,7 +38,7 @@ const availableCatagories = [
     'bandana',
     'bag'
 ]
-
+ 
 function getLoginPage(){
     window.location.href="/login";
 }
@@ -75,23 +75,25 @@ function Navbar(props){
                         <a className="navbar-brand logo" href="./"><img src={logow} /></a>
                         <div className="main-div">
                             <div className="row upper-navbar">
+                               
                                 <ul className="navbar-nav col-md-8 me-auto ">
                                     <li className="nav-item upper-nav-list">
                                         <a className="nav-link active" aria-current="page" href="/">Home</a>
                                     </li>
                                     <li className="nav-item upper-nav-list">
                                         <a className="nav-link" href="#">Winners List</a>
-                                    </li>
+                                     </li>
                                     <li className="nav-item upper-nav-list">
                                         <a className="nav-link" href="/contact">Contact Us</a>
                                     </li>
                                     <li className="nav-item upper-nav-list">
-                                        <a className="nav-link" href="/about">About</a>
+                                         <a className="nav-link" href="/about">About</a>
                                     </li>
                                     <li className="nav-item upper-nav-list">
                                         <a className="nav-link" href="#">Help</a>
                                     </li>
                                 </ul>
+                               
                                 <div className="col-md social-icons">
                                     <button><FaFacebookF size={20}className="white-color"/></button>
                                     <button><IoLogoWhatsapp size={20} className="white-color"/></button>
