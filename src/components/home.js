@@ -24,9 +24,9 @@ import Loading from "./loading.js";
 import { IoMdCopy } from "react-icons/io";
 
 import { Card } from "antd";
-
+ 
 function Home() {
-  const limit = 2;
+  const limit = 3;
   const [pageno, setPageno] = useState(1);
 
   const [typeOfProducts, setTypeOfProducts] = useState(1);
@@ -361,7 +361,7 @@ function Home() {
             }}
             onMouseOut={() => {
               handleOutHover(1);
-            }}
+            }} 
             id="coupon-copy-btn-1"
             className="coupon-code-copy d-none"
           >

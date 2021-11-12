@@ -39,7 +39,7 @@ function Product(props){
         // element.classList.remove("eye-colour");
         const element = document.getElementById(`product-img-trnsprnt-${id}`);
         element.classList.remove("card-img-trnsprnt");
-    }
+    } 
 
     return (
             <div className="card product-card col-3">
