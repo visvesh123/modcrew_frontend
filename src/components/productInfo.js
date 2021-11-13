@@ -290,9 +290,9 @@ function ProductInfo(props) {
           >
             Size 01
           </Radio.Group> */}
-          <button className="productsize-btn default-size">Size 01</button>
-          <button className="productsize-btn">Size 02</button>
-          <button className="productsize-btn">Size 03</button>
+          <button className="productsize-btn default-size">Small (S)</button>
+          <button className="productsize-btn">Medium (M)</button>
+          <button className="productsize-btn">Large (L)</button>
         </span>
         <span className="productcolours">
           <button className="productcolour-btn-1"></button>
@@ -377,6 +377,10 @@ function ProductInfo(props) {
             // onChange={(e) => {
             //   setRating(e.target.value);
             // }}
+            style={{
+              backgroundColor: "#E0E0E0",
+              margin: "10px",
+            }}
             type="number"
           />
           <Input
@@ -385,7 +389,7 @@ function ProductInfo(props) {
             }}
             type="text"
             placeholder="Title"
-            style={{ width: "200px" }}
+            style={{ width: "200px", marginRight: "10px" }}
           />
           <Input
             onChange={(e) => {
@@ -393,7 +397,7 @@ function ProductInfo(props) {
             }}
             type="text"
             placeholder="Write your review here"
-            style={{ width: "300px" }}
+            style={{ width: "300px", marginRight: "10px" }}
           />
           <Button
             onClick={(e) => {
